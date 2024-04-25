@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PageNav from "../../components/PageNav/PageNav";
 import styles from "./Homepage.module.css";
 
@@ -16,6 +17,7 @@ export default function Homepage() {
                     show your friends how you have wandered the world.
                 </h2>
             </section>
+            <Link to="/app">Go to the app</Link>
         </main>
     );
 }
