@@ -10,7 +10,7 @@ export function convertToEmoji(countryCode: string) {
     const codePoints = countryCode
         .toUpperCase()
         .split("")
-        .map((char) => 127397 + char.charCodeAt());
+        .map((char) => 127397 + char.charCodeAt(0));
     return String.fromCodePoint(...codePoints);
 }
 
@@ -18,6 +18,8 @@ function Form() {
     const [cityName, setCityName] = useState("");
     const [date, setDate] = useState(new Date());
     const [notes, setNotes] = useState("");
+
+    const dummyClickHandler = () => {};
 
     return (
         <form className={styles.form}>
@@ -29,7 +31,7 @@ function Form() {
 
             <div className={styles.row}>
                 <label htmlFor="date">When did you go to {cityName}?</label>
-                <input id="date" onChange={(e) => setDate(e.target.value)} value={date} />
+                <input id="date" onChange={(e) => setDate(new Date(e.target.value))} value={date.toISOString().split("T")[0]} />
             </div>
 
             <div className={styles.row}>
@@ -38,7 +40,7 @@ function Form() {
             </div>
 
             <div className={styles.buttons}>
-                <Button type="primary" onClick={undefined}>
+                <Button type="primary" onClick={dummyClickHandler}>
                     Add
                 </Button>
                 <BackButton></BackButton>
