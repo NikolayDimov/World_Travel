@@ -1,23 +1,22 @@
-import { CityItemProps, CityProps } from "../City/City.static";
+import { useCities } from "../../contexts/CitiesContext";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
 import CountryItem from "./CountryItem/CountryItem";
 import styles from "./CountryList.module.css";
 
-function CountryList({ cities, isLoading }: CityProps) {
+function CountryList() {
+    const { cities, isLoading } = useCities();
+
     if (isLoading) return <Spinner />;
     if (!cities.length) return <Message message="Add your first city by clicking on a city on the map" />;
 
-    const countries: { country: string; emoji: string }[] = cities.reduce(
-        (arr: { country: string; emoji: string }[], city: CityItemProps) => {
-            if (!arr.map((el) => el.country).includes(city.country)) {
-                return [...arr, { country: city.country, emoji: city.emoji }];
-            } else {
-                return arr;
-            }
-        },
-        []
-    );
+    const countries: { country: string; emoji: string }[] = cities.reduce((arr: { country: string; emoji: string }[], city) => {
+        if (!arr.map((el) => el.country).includes(city.country)) {
+            return [...arr, { country: city.country, emoji: city.emoji }];
+        } else {
+            return arr;
+        }
+    }, []);
 
     return (
         <ul className={styles.countryList}>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { CityItemProps } from "../City.static";
 import styles from "./CityItem.module.css";
+import { CityContextType } from "../../../contexts/CitiesContext";
 
 const formatDate = (date: string) =>
     new Intl.DateTimeFormat("en", {
@@ -9,7 +9,11 @@ const formatDate = (date: string) =>
         year: "numeric",
     }).format(new Date(date));
 
-function CityItem({ city }: { city: CityItemProps }) {
+interface CityItemProps {
+    city: CityContextType;
+}
+
+function CityItem({ city }: CityItemProps) {
     const { cityName, emoji, date, id, position } = city;
     console.log(position);
 
