@@ -8,9 +8,9 @@ import AppLayout from "./pages/AppLayout/AppLayout";
 import Login from "./pages/Login/Login";
 import CityList from "./components/City/CityList";
 import CountryList from "./components/Country/CountryList";
-import City from "./components/City/City";
 import Form from "./components/Form/Form";
 import { CitiesProvider } from "./contexts/CitiesContext";
+import CurrentCity from "./components/City/City/CurrentCity";
 
 function App() {
     return (
@@ -23,7 +23,7 @@ function App() {
                 <Route path="app" element={<AppLayout />}>
                     <Route index element={<Navigate replace to="cities" />} />
                     <Route path="cities" element={<CityList />} />
-                    <Route path="cities/:id" element={<City />} />
+                    <Route path="cities/:id" element={<CurrentCity />} />
                     <Route path="countries" element={<CountryList />} />
                     <Route path="form" element={<Form />} />
                 </Route>
