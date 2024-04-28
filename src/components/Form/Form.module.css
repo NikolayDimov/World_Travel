@@ -42,3 +42,14 @@
   font-family: inherit;
   font-size: 1.2rem;
 }
+
+.datepickerContainer {
+  position: relative;
+  width: 100%;
+}
+
+.datepicker {
+  left: 0;
+  top: 100%;
+}
+
