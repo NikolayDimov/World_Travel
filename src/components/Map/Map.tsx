@@ -1,33 +1,23 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import { useState } from "react";
 import { useCities } from "../../contexts/CitiesContext";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import Button from "../Button/Button";
+import { useUrlPosition } from "../../hooks/useUrlPosition";
 
 function Map() {
     const { cities } = useCities();
-    const [searchParams] = useSearchParams();
+    const [mapPosition, setMapPosition] = useState([40, 0]);
     const { isLoading: isLoadingPosition, position: goelocationPostion, getPosition } = useGeolocation();
-
-    const defaultLat: number = 40;
-    const defaultLng: number = 0;
-
-    // Fetch lat and lng from URL, or use default values
-    const latString = searchParams.get("lat");
-    const lngString = searchParams.get("lng");
-    const mapLat = latString ? parseFloat(latString) : defaultLat;
-    const mapLng = lngString ? parseFloat(lngString) : defaultLng;
-
-    // Use state to handle map position
-    const [mapPosition, setMapPosition] = useState([mapLat, mapLng]);
+    const [mapLat, mapLng] = useUrlPosition();
 
     // Effect to update map position if URL parameters change
     useEffect(() => {
         if (mapLat && mapLng) {
-            setMapPosition([mapLat, mapLng]);
+            setMapPosition([parseFloat(mapLat), parseFloat(mapLng)]); // Parse strings to numbers
         }
     }, [mapLat, mapLng]);
 
