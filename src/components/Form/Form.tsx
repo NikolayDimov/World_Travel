@@ -10,6 +10,8 @@ import BackButton from "../BackButton/BackButton";
 import { useUrlPosition } from "../../hooks/useUrlPosition";
 import Message from "../Message/Message";
 import Spinner from "../Spinner/Spinner";
+import { CityContextType, useCities } from "../../contexts/CitiesContext";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode: string) {
     const codePoints = countryCode
@@ -23,8 +25,11 @@ const BASE_URL_MAP = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 function Form() {
     const [lat, lng] = useUrlPosition();
+    const { createCity, isLoading } = useCities();
+    const navigate = useNavigate();
+
     const [cityName, setCityName] = useState("");
-    const [countryName, setCountryName] = useState("");
+    const [country, setCountry] = useState("");
     const [date, setDate] = useState<Date | null>(null);
     const [notes, setNotes] = useState("");
     const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
@@ -43,7 +48,7 @@ function Form() {
                 const data = await res.json();
                 if (!data.countryCode) throw new Error("That doesn't seem to be a city. Click somewhere esle 😉");
                 setCityName(data.city || data.locality || "");
-                setCountryName(data.coutry);
+                setCountry(data.countryName);
                 setEmoji(convertToEmoji(data.countryCode));
             } catch (err) {
                 const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred.";
@@ -55,8 +60,31 @@ function Form() {
         fetchCityData();
     }, [lat, lng]);
 
-    function handleSubmit(e) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+
+        if (!cityName || !date || !lat || !lng) {
+            return;
+        }
+
+        const formattedDate = date.toISOString();
+        const formattedLat = lat.toString();
+        const formattedLng = lng.toString();
+
+        const newCity: CityContextType = {
+            cityName,
+            country,
+            emoji,
+            date: formattedDate,
+            notes,
+            position: {
+                lat: formattedLat,
+                lng: formattedLng,
+            },
+        };
+
+        await createCity(newCity);
+        navigate("/app/cities");
     }
 
     const dummyClickHandler = () => {};
@@ -74,7 +102,7 @@ function Form() {
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={`${styles.form} ${isLoading ? styles.loading : ""}`} onSubmit={handleSubmit}>
             <div className={styles.row}>
                 <label htmlFor="cityName">City name</label>
                 <input id="cityName" onChange={(e) => setCityName(e.target.value)} value={cityName} />
