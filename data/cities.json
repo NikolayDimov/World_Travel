@@ -61,18 +61,6 @@
       "id": "17844751"
     },
     {
-      "cityName": "Munchen",
-      "country": "Germany",
-      "emoji": "🇪🇸",
-      "date": "2027-12-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 48.1351,
-        "lng": 11.582
-      },
-      "id": "17845751"
-    },
-    {
       "cityName": "Varna",
       "country": "Bulgaria",
       "emoji": "🇧🇬",
@@ -118,42 +106,6 @@
       "position": {
         "lat": "39.57817336212529",
         "lng": "2.6971435546875"
-      }
-    },
-    {
-      "id": "2879",
-      "cityName": "Paris",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-03-31T21:00:00.000Z",
-      "notes": "pari",
-      "position": {
-        "lat": "48.860197534643966",
-        "lng": "2.3469543457031254"
-      }
-    },
-    {
-      "id": "da0a",
-      "cityName": "Toulon",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-06-29T21:00:00.000Z",
-      "notes": "popo",
-      "position": {
-        "lat": "43.12504316740127",
-        "lng": "5.93536376953125"
-      }
-    },
-    {
-      "id": "d887",
-      "cityName": "Budapest",
-      "country": "Hungary",
-      "emoji": "🇭🇺",
-      "date": "2024-08-25T21:00:00.000Z",
-      "notes": "buda and pest",
-      "position": {
-        "lat": "47.48751300895658",
-        "lng": "19.072265625000004"
       }
     }
   ]
