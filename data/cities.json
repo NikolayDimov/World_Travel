@@ -97,15 +97,27 @@
       }
     },
     {
-      "id": "0fe7",
-      "cityName": "Palma",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-07-02T21:00:00.000Z",
-      "notes": "na palmata",
+      "id": "13d3",
+      "cityName": "Thessaloniki",
+      "country": "Greece",
+      "emoji": "🇬🇷",
+      "date": "2024-07-25T21:00:00.000Z",
+      "notes": "solun",
       "position": {
-        "lat": "39.57817336212529",
-        "lng": "2.6971435546875"
+        "lat": "40.643135583312805",
+        "lng": "22.936706542968754"
+      }
+    },
+    {
+      "id": "4b3f",
+      "cityName": "Borgo Maggiore",
+      "country": "San Marino",
+      "emoji": "🇸🇲",
+      "date": "2024-04-14T21:00:00.000Z",
+      "notes": "italy",
+      "position": {
+        "lat": "43.93152797296857",
+        "lng": "12.469482421875"
       }
     }
   ]
