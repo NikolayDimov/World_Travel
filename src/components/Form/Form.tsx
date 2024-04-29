@@ -87,8 +87,6 @@ function Form() {
         navigate("/app/cities");
     }
 
-    const dummyClickHandler = () => {};
-
     if (isLoadingGeocoding) {
         return <Spinner />;
     }
@@ -120,9 +118,7 @@ function Form() {
             </div>
 
             <div className={styles.buttons}>
-                <Button type="primary" onClick={dummyClickHandler}>
-                    Add
-                </Button>
+                <Button type="primary">Add</Button>
                 <BackButton></BackButton>
             </div>
         </form>
