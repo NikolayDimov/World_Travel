@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./contexts/FakeAuthContext";
 import { ProtectedRoute } from "./pages/ProtectedRoute/ProtectedRoute";
-import { CitiesProvider } from "./contexts/CitiesContext";
+import { CitiesProvider } from "./contexts/CitiesContext_Reduce";
 
 import CityList from "./components/City/CityList";
 import CountryList from "./components/Country/CountryList";
